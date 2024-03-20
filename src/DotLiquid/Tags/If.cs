@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -46,6 +47,9 @@ namespace DotLiquid.Tags
 
         public override void Render(Context context, TextWriter result)
         {
+/*            Console.WriteLine("Markup:" + this.Markup);
+            Console.WriteLine("Name:" + this.Name);
+            Console.WriteLine("TagName:" + this.TagName);*/
             context.Stack(() =>
             {
                 foreach (Condition block in Blocks)

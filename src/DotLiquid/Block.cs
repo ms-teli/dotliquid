@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -168,6 +168,10 @@ namespace DotLiquid
         /// <param name="result"></param>
         protected void RenderAll(List<object> list, Context context, TextWriter result)
         {
+/*            Console.WriteLine("Markup:" + this.Markup);
+            Console.WriteLine("Name:" + this.Name);
+            Console.WriteLine("BlockName:" + this.BlockName);
+            Console.WriteLine("TagName:" + this.TagName);*/
             foreach (var token in list)
             {
                 context.CheckTimeout();

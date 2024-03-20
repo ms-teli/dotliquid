@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Text.RegularExpressions;
 using System.Threading;
+using DotLiquid.Cache;
 using DotLiquid.Exceptions;
 using DotLiquid.Util;
 
@@ -37,6 +38,9 @@ namespace DotLiquid
         /// Ruby Date Format flag, switches Date filter syntax between Ruby and CSharp formats.
         /// </summary>
         public bool UseRubyDateFormat { get; set; }
+
+
+        public RenderCache RenderCache { get; } = new RenderCache();
 
         /// <summary>
         /// Returns the CurrentCulture specified for this Context.

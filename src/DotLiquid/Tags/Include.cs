@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -39,6 +40,28 @@ namespace DotLiquid.Tags
         }
 
         public override void Render(Context context, TextWriter result)
+        {
+            string beforeRendering = result.ToString();
+            string cacheKey = this.TagName + " " + this.Markup;
+            if (context.RenderCache.TryGetValue(cacheKey, out string content))
+            {
+                if (!string.IsNullOrEmpty(content))
+                {
+                    // Console.WriteLine("yes");
+                }
+                result.Write(content);
+                return;
+            }
+
+            InternalRender(context, result);
+
+            string afterRendering = result.ToString();
+            string deltaContent = afterRendering.Substring(beforeRendering.Length);
+
+            context.RenderCache.Add(cacheKey, deltaContent);
+        }
+
+        private void InternalRender(Context context, TextWriter result)
         {
             IFileSystem fileSystem = context.Registers["file_system"] as IFileSystem ?? Template.FileSystem;
             ITemplateFileSystem templateFileSystem = fileSystem as ITemplateFileSystem;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -82,6 +83,7 @@ namespace DotLiquid
         /// <returns></returns>
         internal string Render(Context context)
         {
+            Console.WriteLine($"Render {this.TagName}");
             using (TextWriter result = new StringWriter(context.FormatProvider))
             {
                 Render(context, result);
